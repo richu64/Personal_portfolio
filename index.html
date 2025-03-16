@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richu Innocent | Portfolio</title>
+    <style>
+        /* Reset and Global Styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 4rem 0;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform-origin: center;
+        }
+
+        section.active {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-item {
+            margin-left: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, #e6f7ff, #fff);
+            transform: rotateY(10deg) translateX(100px);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 300px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* About Section */
+        #about {
+            background-color: #fff;
+            transform: rotateY(10deg) translateX(100px);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2;
+            padding-right: 2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background-color: #f0f0f0;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section */
+        #experience {
+            background-color: #f0f0f0;
+            transform: rotateY(10deg) translateX(100px);
+        }
+
+        .experience-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            font-size: 0.9rem;
+        }
+
+        /* Education Section */
+        #education {
+            background-color: #fff;
+            transform: rotateY(10deg) translateX(100px);
+        }
+
+        .education-card {
+            background-color: #f0f0f0;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-description {
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.8rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-list {
+                margin-top: 0.5rem;
+            }
+
+            .nav-item {
+                margin: 0.5rem 0;
+            }
+
+            #hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="social-links">
+                <a href="www.linkedin.com/in/richu-innocent-9b9a0328" target="_blank">LinkedIn</a> |
+		<a href="https://www.instagram.com/richu.innocent/" target="_blank">Instagram</a> 
+         </div>
+            <nav class="navbar">
+                <a href="#" class="logo">Richu Innocent</a>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Richu Innocent</h1>
+                <p class="hero-description">Aspiring data professional with expertise in finance and management.</p>
+                <button class="cta-button">Contact Me</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://raw.githubusercontent.com/richu64/image/refs/heads/main/Richu.JPG" alt="Richu Innocent">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Dedicated and results-driven Financial Analyst with over 4 years of relevant experience in financial reporting and analysis.
+                        Proven expertise in US GAAP SEC filings and XBRL reporting with a strong track record of ensuring accurate financial reporting and compliance.
+                        Skilled in using tools like Pandas for data wrangling and SQL for querying databases, along with Active Disclosure and Excel to streamline financial processes and enhance data accuracy.</p>
+                    <ul class="skills-list">
+                        <li class="skill-item"><b>SQL</b></li>
+                        <li class="skill-item"><b>Power Query</b></li>
+                        <li class="skill-item"><b>Power BI</b></li>
+                        <li class="skill-item"><b>Microsoft Excel</b></li>
+                        <li class="skill-item"><b>US GAAP</b></li>
+                        <li class="skill-item"><b>XBRL</b></li>
+                        <li class="skill-item"><b>Financial Reporting</b></li>
+                        <li class="skill-item"><b>Tally Erp</b></li>
+                        <li class="skill-item"><b>GST Returns</b></li>
+                        <li class="skill-item"><b>Active Disclosure</b></li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://raw.githubusercontent.com/richu64/image/refs/heads/main/Richu.JPG" alt="Richu Innocent">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+
+            <div class="experience-card">
+                <h3 class="experience-title">Financial Analyst</h3>
+                <p class="experience-meta">Aptara Learning Private Ltd., Trivandrum | October 2022 – Present</p>
+                <div class="experience-description">
+                    <ul>
+                        <li>Work with US GAAP and IFRS to prepare financial statements, shareholder reports, and balance sheets.</li>
+                        <li>Ensure accurate financial reporting across departments by collaborating closely with management.</li>
+                        <li>Utilize XBRL tools Xcelerate and Active Disclosure to map financial data and disclosures in SEC filings such as Form 8-K, 10-Q, 10-K, S-1, 20F, proxy statements, insider trading, clawback and filing fee disclosures.</li>
+                        <li>Analyze financial statements of US companies and deliver high-quality projects on time.</li>
+                        <li>Utilized Pandas for data wrangling to clean, transform, and analyze financial datasets, ensuring accuracy and consistency in reporting.</li>
+                        <li>Leveraged SQL for querying large databases, extracting critical data to support financial analysis and reporting.</li>
+                    </ul>
+                    <p><strong>Achievement:</strong></p>
+                    <ul>
+                        <li>Awarded Shining Star Certificate for outstanding performance and contributions to the organization.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <h3 class="experience-title">General Manager (Family Business)</h3>
+                <p class="experience-meta">Discovery Traders, Trivandrum | November 2015 – September 2022 & February 2012 - July 2013</p>
+                <div class="experience-description">
+                    <ul>
+                        <li>Managed accounting functions using Tally ERP, including generating GST returns and finalizing annual reports.</li>
+                        <li>Negotiated terms with suppliers as Purchase Manager to secure optimal deals without compromising quality.</li>
+                        <li>Supervised factory operations to meet daily targets and organizational goals.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <h3 class="experience-title">Financial Associate</h3>
+                <p class="experience-meta">RR Donnelley, Trivandrum | October 2013 – October 2015</p>
+                <div class="experience-description">
+                    <ul>
+                        <li>Prepared financial statements and shareholder reports adhering to US GAAP standards.</li>
+                        <li>Collaborated with various departments to ensure accurate financial reporting.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+
+            <div class="education-card">
+                <h3 class="education-title">Master of Business Administration (Finance)</h3>
+                <p class="experience-meta">Coventry University, London, United Kingdom | February 2012</p>
+            </div>
+
+            <div class="education-card">
+                <h3 class="education-title">Bachelor of Commerce</h3>
+                <p class="experience-meta">Amrita Vishwa Vidyapeetham, Kollam, Kerala | September 2010</p>
+            </div>
+
+            <div class="education-card">
+                <h3 class="education-title">Secondary and Higher Secondary Education</h3>
+                <p class="experience-meta">Trinity Lyceum, Kollam, Kerala | March 2007</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Address:</strong> TC 25/2583, Watts Lane, Nanthancode, Kowdiar PO, Trivandrum - 695003, Kerala, India
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:richu64@gmail.com">richu64@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> +91 7639664800
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Richu Innocent | Financial Analyst</p>
+            <p>Last Updated: March 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.2,
+        });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
